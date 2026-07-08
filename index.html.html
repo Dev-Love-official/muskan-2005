@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>For Muskan 💖</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="aurora"></div>
+  <div class="sparkles"></div>
+
+  <button class="music-btn" id="musicBtn" aria-label="Toggle music">🎵</button>
+
+  <audio id="bgMusic" loop>
+    <!-- Optional: replace this with your own mp3 file in assets/music.mp3 -->
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <main class="app">
+    <section class="screen active" id="splash">
+      <div class="badge">Made with love by Lovedeep</div>
+      <div class="emoji-cloud">🧸 🌹 💖 ✨ 💌</div>
+      <h1>Muskan</h1>
+      <p class="lead">I made something special for someone who means a lot to me.</p>
+      <button class="primary" onclick="goTo('photoReveal')">Start your surprise</button>
+    </section>
+
+    <section class="screen" id="photoReveal">
+      <div class="photo-wrap">
+        <img src="assets/muskan.jpeg" alt="Muskan" onerror="this.style.display='none'; document.querySelector('.photo-placeholder').style.display='grid';" />
+        <div class="photo-placeholder">
+          <span>📸</span>
+          <p>Add her picture here later:<br><b>assets/muskan.jpg</b></p>
+        </div>
+      </div>
+
+      <h2>For the prettiest smile</h2>
+      <p class="lead">A small surprise, made with care, love, and a little bit of magic.</p>
+      <button class="primary" onclick="goTo('question')">Continue 💖</button>
+    </section>
+
+    <section class="screen" id="question">
+      <div class="emoji-cloud">🧸 💖 🧸</div>
+      <h2>Will you go out with me?</h2>
+      <p class="lead">No pressure… but the teddy committee is watching.</p>
+
+      <div class="love-meter">
+        <span>Chance of saying yes</span>
+        <div class="meter"><div class="meter-fill"></div></div>
+        <strong>99.9%</strong>
+      </div>
+
+      <div class="button-row">
+        <button class="no-btn" id="noBtn">No</button>
+        <button class="primary yes-btn" onclick="yesClicked()">Yes 💗</button>
+      </div>
+
+      <p class="tiny" id="noMessage">Tip: The “No” button has trust issues.</p>
+    </section>
+
+    <section class="screen" id="miniGame">
+      <div class="emoji-cloud">🎯 🧸 💘</div>
+      <h2>One cute challenge</h2>
+      <p class="lead">Catch 5 hearts to unlock the date plan.</p>
+
+      <div class="game-area" id="gameArea">
+        <div class="score">Hearts: <span id="score">0</span>/5</div>
+      </div>
+
+      <button class="secondary" onclick="skipGame()">Skip, she already won my heart 💖</button>
+    </section>
+
+    <section class="screen" id="activity">
+      <div class="emoji-cloud">🍝 🍿 🌸 ☕ 🎁</div>
+      <h2>Pick our date vibe</h2>
+      <p class="lead">Choose what feels cutest.</p>
+
+      <div class="options">
+        <button onclick="chooseActivity('Dinner date 🍝')">Dinner date 🍝</button>
+        <button onclick="chooseActivity('Movie night 🍿')">Movie night 🍿</button>
+        <button onclick="chooseActivity('Coffee and walk ☕')">Coffee and walk ☕</button>
+        <button onclick="chooseActivity('Picnic with flowers 🌸')">Picnic with flowers 🌸</button>
+        <button onclick="chooseActivity('Long drive and music 🚗')">Long drive and music 🚗</button>
+        <button onclick="chooseActivity('Teddy surprise 🧸🎁')">Teddy surprise 🧸🎁</button>
+      </div>
+    </section>
+
+    <section class="screen" id="date">
+      <div class="emoji-cloud">📅 💌 🧸</div>
+      <h2>Pick the date</h2>
+      <p class="lead">Choose the day our cute plan becomes real.</p>
+
+      <input type="date" id="dateInput">
+      <button class="primary" onclick="saveDate()">Lock it in 💖</button>
+    </section>
+
+    <section class="screen" id="letter">
+      <div class="emoji-cloud">💌 🌹 ✨</div>
+      <h2>A letter for you</h2>
+
+      <div class="letter-box">
+        <p id="typedLetter"></p>
+      </div>
+
+      <button class="primary hidden" id="letterBtn" onclick="goTo('promise')">Continue</button>
+    </section>
+
+    <section class="screen" id="promise">
+      <div class="emoji-cloud">🌍 ✈️ 💍 💖</div>
+      <h2>My little promise</h2>
+
+      <div class="promise-grid">
+        <div>🌍<span>Travel the world with you</span></div>
+        <div>🤝<span>Respect you always</span></div>
+        <div>🧸<span>Keep you smiling</span></div>
+        <div>🏡<span>Build a beautiful future</span></div>
+      </div>
+
+      <button class="primary" onclick="goTo('final')">Final surprise 🎁</button>
+    </section>
+
+    <section class="screen" id="final">
+      <div class="emoji-cloud big">💖 ✨ 🧸 ✨ 💖</div>
+      <h1>Yay!</h1>
+      <p class="lead">I’m so glad you said yes.</p>
+
+      <div class="summary-card">
+        <p><b>Our plan:</b> <span id="activityResult">A cute surprise</span></p>
+        <p><b>Date:</b> <span id="dateResult">Soon</span></p>
+        <p><b>Dress code:</b> Smile required, teddy optional 🧸</p>
+        <p><b>Official status:</b> Date saved, heart approved 💖✅</p>
+      </div>
+
+      <div class="ticket" id="ticket">
+        <div>
+          <span>VIP DATE PASS</span>
+          <strong>Lovedeep × Muskan</strong>
+        </div>
+        <div class="ticket-emoji">🎟️</div>
+      </div>
+
+      <button class="primary" onclick="downloadPlan()">Download our VIP date pass 💌</button>
+      <button class="secondary" onclick="copyPlan()">Copy plan</button>
+      <button class="secondary" onclick="restart()">Replay surprise</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
